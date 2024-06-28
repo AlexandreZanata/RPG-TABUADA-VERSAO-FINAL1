@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPG Tabuada</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #1b1b1b;
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .title {
+            font-size: 10em;
+            animation: colorChange 30s infinite;
+        }
+
+        @keyframes colorChange {
+            0% { color: rgb(183, 0, 255); }
+            25% { color: rgb(255, 251, 0); }
+            50% { color: rgb(0, 255, 0); }
+            75% { color: rgb(0, 102, 255); }
+            100% { color: rgb(225, 0, 255); }
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 5em;
+            margin: 10px;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #555;
+        }
+
+        .small {
+            font-size: 1em;
+            padding: 5px 10px;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            visibility: hidden;
+        }
+
+        .modal-content {
+            background-color: #222;
+            border: 2px solid #555;
+            padding: 20px;
+            width: 50%;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            font-size: 1.2em;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #000000;
+            color: #fff;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            background-color: #555;
+        }
+
+        p {
+            font-size: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 5em;
+            }
+
+            .btn {
+                font-size: 2em;
+            }
+
+            .modal-content {
+                width: 80%;
+                font-size: 1em;
+            }
+
+            p {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">RPG TABUADA</h1>
+        <button class="btn" id="play-button">Jogar</button>
+        <button class="btn" id="tips-button">Dicas</button>
+    </div>
+
+    <div id="tips-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-tips">&times;</span>
+            <p>Entre na aventura e capture o máximo de pontos possíveis, mas cuidado se você errar uma equação ou encostar no inimigo perderá todos os seus pontos. As moedas valem 1 ponto e as equações 50.</p>
+            <button class="btn small" id="play-button-small">Jogar</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (localStorage.getItem('tipsViewed') === 'true') {
+                document.getElementById('tips-modal').style.visibility = 'hidden';
+            }
+        });
+
+        document.getElementById('play-button').addEventListener('click', function() {
+            localStorage.setItem('gameStart', 'true');
+            window.location.href = 'index.html';
+        });
+
+        document.getElementById('play-button-small').addEventListener('click', function() {
+            localStorage.setItem('gameStart', 'true');
+            window.location.href = 'index.html';
+        });
+
+        document.getElementById('tips-button').addEventListener('click', function() {
+            document.getElementById('tips-modal').style.visibility = 'visible';
+        });
+
+        document.getElementById('close-tips').addEventListener('click', function() {
+            document.getElementById('tips-modal').style.visibility = 'hidden';
+            localStorage.setItem('tipsViewed', 'true');
+        });
+    </script>
+</body>
+</html>
